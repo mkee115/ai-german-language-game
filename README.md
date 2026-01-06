@@ -3,15 +3,15 @@ An AI-integrated game for English speakers to practice/learn German
 
 ## Project Size
 
-**Current Status:** This project is very small at the moment (~200KB total, ~30KB without git history).
+**Current Status:** This project is currently very small (~200KB total, ~30KB without git history).
 
 The repository currently contains:
 - Basic project structure with placeholder directories (backend, frontend, models, prompts)
 - Initial documentation
-- 6 files total
+- A total of 6 files
 
 As development progresses, the size will grow depending on:
-- AI model integration (if models are included locally vs. API-based)
+- AI model integration (depending on whether models are stored locally or accessed via API)
 - Frontend assets (images, sounds, etc.)
 - Dependencies installed via package managers (not tracked in git)
 - Backend implementation and database files
