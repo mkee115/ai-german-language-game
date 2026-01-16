@@ -8,21 +8,25 @@ type Message = {
 }
 
 export default function ChatBox() {
-    const [messages, setMessages] = useState<Message[]>([]);
+    const [npcMessages, setNpcMessages] = useState<Message[]>([]);
+    const [tutorMessages, setTutorMessages] = useState<Message[]>([]);
     const [input, setInput] = useState("");
     const [role, setRole] = useState<Role>('npc_family');
+
+    const currentMessages = role === 'npc_family' ? npcMessages : tutorMessages;
+    const setCurrentMessages = role === 'npc_family' ? setNpcMessages : setTutorMessages;
 
     async function handleSend() {
         if (input.trim() === "") return;
 
         const userMessage: Message = { sender: 'user', text: input };
-        setMessages((prev) => [...prev, userMessage]);
+        setCurrentMessages((prev) => [...prev, userMessage]);
         setInput("");
 
         const reply = await sendMessage(input, role);
         const aiMessage: Message = { sender: 'ai', text: reply };
 
-        setMessages((prev) => [...prev, aiMessage]);
+        setCurrentMessages((prev) => [...prev, aiMessage]);
     }
 
     return (
@@ -34,20 +38,45 @@ export default function ChatBox() {
                 <option value="tutor">Tutor</option>
             </select>
 
-            <div style={{ border: "1px solid #ccc", padding: 10, minHeight: 200}}>
-                {messages.map((msg, index) => (
-                    <p key={index}>
+            <div style={{ border: "1px solid #ccc", padding: 10, minHeight: 200, maxHeight: 200, overflowY: "scroll", backgroundColor: "white", borderRadius: 10 }}>
+                {currentMessages.map((msg, index) => (
+                    <p key={index}
+                       style={{ color: msg.sender === 'user' ? '#7d0060' : '#00414f' }}>
                         <strong>{msg.sender}:</strong> {msg.text}
                     </p>
                 ))}
             </div>
 
-            <input
+            <input style={{
+                verticalAlign: "top", 
+                padding: 12, 
+                marginTop: 8, 
+                borderRadius: 10,  
+                border: "1px solid #ccc" 
+            }}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        handleSend();
+                    }
+                }}
                 placeholder='Type in German'
                 />
-            <button onClick={handleSend}>Send</button>
+
+            <button style={{
+                verticalAlign: "top", 
+                height: 40, 
+                padding: 10, 
+                marginLeft: 8, 
+                marginTop: 8, 
+                backgroundColor: '#7d0060', 
+                color: 'white', 
+                border: 'none', 
+                fontSize: 15, 
+                borderRadius: 10 
+            }}
+            onClick={handleSend}>Send</button>
         </div>
     );
 }
