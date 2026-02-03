@@ -1,7 +1,8 @@
-import ChatBox from "./components/ChatBox";
+// import ChatBox from "./components/ChatBox";
+import TitleScreen from "./components/TitleScreen";
 
 function App() {
-  return <ChatBox />;
+  return <TitleScreen />;
 }
 
 export default App;

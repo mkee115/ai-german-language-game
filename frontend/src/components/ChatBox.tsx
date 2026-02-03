@@ -50,7 +50,7 @@ export default function ChatBox() {
             <input style={{
                 verticalAlign: "top", 
                 padding: 12, 
-                marginTop: 8, 
+                marginTop: 8,  
                 borderRadius: 10,  
                 border: "1px solid #ccc" 
             }}
