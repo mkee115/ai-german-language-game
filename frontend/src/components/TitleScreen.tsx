@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import familyTreeImage from '../assets/family-tree-blurred.png';
 
 export default function TitleScreen() {
+    const navigate = useNavigate();
+    
     return (
         <div style={{
             backgroundImage: `url(${familyTreeImage})`,
@@ -17,8 +20,8 @@ export default function TitleScreen() {
             textAlign: "center",
             fontFamily: "VT323, monospace",
         }}>
-            <h1 style={{ fontSize: "80px", marginBottom: "40px", textShadow: "2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black" }}>Welcome to the AI German Language Game!</h1>
-            <p style={{ fontSize: "45px", marginTop: "0", marginBottom: "70px", textShadow: "2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black" }}>Click "Start" to begin your language learning adventure.</p>
+            <h1 style={{ fontSize: "80px", marginBottom: "40px", color: "white", textShadow: "2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black" }}>Welcome to the AI German Language Game!</h1>
+            <p style={{ fontSize: "45px", marginTop: "0", marginBottom: "70px", color: "white", textShadow: "2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black" }}>Click "Start" to begin your language learning adventure.</p>
             <button
                 style={{
                     padding: "10px 20px",
@@ -30,9 +33,7 @@ export default function TitleScreen() {
                     cursor: "pointer",
                     textShadow: "2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black",
                 }}
-                onClick={() => {
-                    window.location.href = "/chat";
-                }}
+                onClick={() => navigate("/instructions")}
             >
                 Start
             </button>
